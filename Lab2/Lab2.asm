@@ -6,8 +6,8 @@
 	Yes: .asciiz "Yes"
 .text
 	main:
-	#enter value of bytes
-	addi $v0, $zero 0xFFFFFFFF 	
+	#print enter value of bytes
+	lw $v0, 4 	
 	la $a0, message
 	syscall 
 	#input number of byte
