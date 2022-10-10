@@ -32,7 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Bitwise_OR is
-    Port ( BusA : in STD_LOGIC_VECTOR (31 downto 0);
+    Port (  Overflow, Carryout : out std_logic;
+           BusA : in STD_LOGIC_VECTOR (31 downto 0);
            BusB : in STD_LOGIC_VECTOR (31 downto 0);
            Result : out STD_LOGIC_VECTOR (31 downto 0));
 end Bitwise_OR;
@@ -40,6 +41,8 @@ end Bitwise_OR;
 architecture Behavioral of Bitwise_OR is
 
 begin
-
+Result <= BusA OR BusB;
+Overflow <='0';
+Carryout <= '0';
 
 end Behavioral;

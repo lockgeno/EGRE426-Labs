@@ -51,26 +51,32 @@ Port(      Ra : in std_logic_vector(4 downto 0);
            Rb : in std_logic_vector (4 downto 0);
            Rw : in std_logic_vector (4 downto 0);
            RegWr : in std_logic;
-           busW : inout std_logic_vector(31 downto 0);
+           Writebus : in std_logic_vector(31 downto 0);
            Clk : in std_logic;
-           busA : inout std_logic_vector(31 downto 0);
-           busB : inout std_logic_vector(31 downto 0) );   
+           busA : out std_logic_vector(31 downto 0);
+           busB : out std_logic_vector(31 downto 0) );   
 
 end component;
 component ALU 
 Port( ALUctr : in std_logic_vector(2 downto 0); 
            Zero, Overflow, Carryout : out std_logic;
-           Result : inout std_logic_vector(31 downto 0);
-           BusA, BusB : inout std_logic_vector (31 downto 0));
-end component;
+           Result : out std_logic_vector(31 downto 0);
+           BusA, BusB : in std_logic_vector (31 downto 0));
+end component; 
 --signals and variables
-signal busWrite, bus_A, bus_B : std_logic_vector(31 downto 0); 
+signal  bus_A, bus_B : std_logic_vector(31 downto 0); 
 signal Ra_i, Rb_i, Rw_i : std_logic_vector(4 downto 0);
 signal Result_i : std_logic_vector(31 downto 0);
+signal ALUctr_i : std_logic_vector(2 downto 0);
 begin
 Ra_i <= std_logic_vector(Rs);
 Rb_i <= std_logic_vector(Rt);
 Rw_i <= std_logic_vector(Rd);
+ALUctr_i <= std_logic_vector(ALUctr);
 
-Reg_file : Register_file port map (Ra => Ra_i, Rb => Rb_i, Rw => Rw_i, RegWr => RegWr, busW => busWrite, Clk => clk, busA => bus_A, busB => bus_B);
+Reg_file : Register_file port map (Ra => Ra_i, Rb => Rb_i, Rw => Rw_i, RegWr => RegWr, Writebus => Result_i, Clk => clk, busA => bus_A, busB => bus_B);
+
+ALU_F : ALU port map( ALUctr => ALUctr_i, Zero => Zero, Overflow => Overflow, Carryout => Carryout,  Result => Result_i, BusA => bus_A, busB => bus_B); 
+Result <= unsigned(Result_i);
+
 end simple;

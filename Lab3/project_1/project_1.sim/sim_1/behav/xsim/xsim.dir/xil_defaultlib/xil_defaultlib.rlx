@@ -2,6 +2,15 @@
 2020.2
 Nov 18 2020
 09:47:47
-H:/426/EGRE426-Labs/Lab3/project_1/project_1.srcs/sources_1/new/Register_file.vhd,1665164367,vhdl,,,,register_file,,,,,,,,
-H:/426/EGRE426-Labs/Lab3/project_1/project_1.srcs/sources_1/new/top_level.vhd,1665163392,vhdl,H:/426/EGRE426-Labs/Lab3/top_level_tb.vhdl,,,top_level,,,,,,,,
-H:/426/EGRE426-Labs/Lab3/top_level_tb.vhdl,1663875004,vhdl,,,,top_level_tb,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/ALU.vhd,1665364936,vhdl,,,,alu,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Adder.vhd,1665363828,vhdl,,,,adder,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Arithmetic_Left_Shift.vhd,1665361447,vhdl,,,,arithmetic_left_shift,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Arithmetic_Right_Shift.vhd,1665361463,vhdl,,,,arithmetic_right_shift,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Bitwise_AND.vhd,1665361404,vhdl,,,,bitwise_and,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Bitwise_OR.vhd,1665349872,vhdl,,,,bitwise_or,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Logical_Left_Shift.vhd,1665361424,vhdl,,,,logical_left_shift,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Logical_Right_Shift.vhd,1665362257,vhdl,,,,logical_right_shift,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Register_file.vhd,1665360379,vhdl,,,,register_file,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Subtractor.vhd,1665363341,vhdl,,,,subtractor,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/top_level.vhd,1665361047,vhdl,C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/top_level_tb.vhdl,,,top_level,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/top_level_tb.vhdl,1665362620,vhdl,,,,top_level_tb,,,,,,,,

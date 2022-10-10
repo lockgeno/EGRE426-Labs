@@ -24,7 +24,7 @@ architecture behavior of top_level_tb is
   constant Rd_vals : Rd_array := ("11110","11110");
   constant Rs_vals : Rs_array := ("00000","00010");
   constant Rt_vals : Rt_array := ("00001","00001");
-  constant ALUctr_vals : ALUctr_array := ("011","100");
+  constant ALUctr_vals : ALUctr_array := ("000","001");
   constant Zero_vals : Zero_array := ('1','0');
   constant Overflow_vals : Overflow_array := ('1','0');
   constant Carryout_vals : Carryout_array := ('1','0');
@@ -68,15 +68,15 @@ begin
   stimulus : process
   begin
     for i in 0 to (NUM_VALS - 1) loop
-      RegWr_sig <= RegWr_vals(i);
-      Rd_sig <= Rd_vals(i);
-      Rs_sig <= Rs_vals(i);
-      Rt_sig <= Rt_vals(i);
-      ALUctr_sig <= ALUctr_vals(i);
-      wait for TIME_DELAY;
-    end loop;
+        RegWr_sig <= RegWr_vals(i);
+        Rd_sig <= Rd_vals(i);
+        Rs_sig <= Rs_vals(i);
+        Rt_sig <= Rt_vals(i);
+        ALUctr_sig <= ALUctr_vals(i);
+        wait for TIME_DELAY;
+        end loop;
     wait;
-  end process stimulus;
+    end process stimulus;
 
   monitor : process
     variable i : integer := 0;

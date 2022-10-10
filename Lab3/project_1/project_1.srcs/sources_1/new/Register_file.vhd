@@ -36,62 +36,72 @@ entity Register_file is
            Rb : in std_logic_vector (4 downto 0);
            Rw : in std_logic_vector (4 downto 0);
            RegWr : in std_logic;
-           busW : inout std_logic_vector(31 downto 0);
+           Writebus : in std_logic_vector(31 downto 0);
            Clk : in std_logic;
-           busA : inout std_logic_vector(31 downto 0);
-           busB : inout std_logic_vector(31 downto 0)
+           busA : out std_logic_vector(31 downto 0);
+           busB : out std_logic_vector(31 downto 0)
            );
 end Register_file;
 
 architecture behavioral of Register_file is
 --type reg_data is array(31 downto 0) of bit_vector( 31 downto 0);
 type reg_data is array(31 downto 0) of std_logic_vector( 31 downto 0);
-shared variable reg_data_bits : reg_data; 
+shared variable reg_data_bits : reg_data := (x"00000000", --$zero0
+                                     x"11111111", --$at 1
+                                     x"ffffffff", --$v0 2
+                                     x"33333333", --$v1 3
+                                     x"44444444", --$a0 4
+                                     x"55555555", --$a1 5
+                                     x"66666666", --$a2 6
+                                     x"77777777", --$a3 7 
+                                     x"88888888", --$t0 8
+                                     x"99999999", --$t1 9
+                                     x"aaaaaaaa", --$t2 10
+                                     x"bbbbbbbb", --$t3 11
+                                     x"cccccccc", --$t4 12
+                                     x"dddddddd", --$t5 13
+                                     x"00000000", --$t6 14
+                                     x"ffffffff", --$t7 15
+                                     x"11111111", --$s0 16
+                                     x"22222222", --$s1 17
+                                     x"33333333", --$s2 18
+                                     x"44444444", --$s3 19
+                                     x"55555555", --$s4 20
+                                     x"66666666", --$s5 21
+                                     x"77777777", --$s6 22 
+                                     x"88888888", --$s7 23
+                                     x"99999999", --$t8 24
+                                     x"aaaaaaaa", --$t9 25
+                                     x"bbbbbbbb", --$k0 26
+                                     x"cccccccc", --$k1 27
+                                     x"10008000", 
+                                     x"7ffff1ec", 
+                                     x"00000000",  
+                                     x"eeeeeeee"  
+                                     ); 
 shared variable Rdi, Rsi, Rti  : integer; 
 shared variable fill : integer := 0;
 shared variable data1 : std_logic_vector(31 downto 0) := x"0000_0000";
 begin
-default_registers : process is
-begin
---reg_data_bits(0) := data1;
-reg_data_bits(0) := x"FFFF_FFFFF";
-reg_data_bits(1) := x"FFFF_FFFFF";
-reg_data_bits(2) := x"FFFF_FFFFF";
-reg_data_bits(3) := x"FFFF_FFFF1";
-reg_data_bits(4) := x"0000_0000";
-reg_data_bits(5) := x"FFFF_1000";
-reg_data_bits(6) := x"FFFF_FFFFF";
-reg_data_bits(7) := x"FFFF_FFFFF";
-reg_data_bits(8) := x"FFFF_FFFFF";
-reg_data_bits(9) := x"FFFF_FFFF1";
-reg_data_bits(10) := x"0000_0000";
-reg_data_bits(11) := x"FFFF_1000";
-
-
-wait;
-end process default_registers;  
-decode_input : process (Clk) is
+  
+decode_input : process (Clk, RegWr) is
 begin
 
 Rdi := to_integer(unsigned(Rw));
 Rti := to_integer(unsigned(Rb));
 Rsi := to_integer(unsigned(Ra));
-
---bus output
 if falling_edge(Clk)then
 busA <= reg_data_bits(Rsi);
 busB <= reg_data_bits(Rti);
+if RegWr = '1' then
+reg_data_bits(Rdi) := Writebus;
 end if;
+end if; 
+
+
 end process decode_input;
 --writing to registers
-writing_to_reg : process (Clk)is
-begin
-if falling_edge(Clk)then
-if RegWr = '1' then
-busW <= reg_data_bits(Rdi) ;
-end if;
-end if;
-end process writing_to_reg;
+
 
 
 end behavioral;
