@@ -81,7 +81,7 @@ shared variable reg_data_bits : reg_data := (x"00000000", --$zero0
                                      ); 
 shared variable Rdi, Rsi, Rti  : integer; 
 shared variable fill : integer := 0;
-shared variable data1 : std_logic_vector(31 downto 0) := x"0000_0000";
+--shared variable data1 : std_logic_vector(31 downto 0) := x"0000_0000";
 begin
   
 decode_input : process (Clk, RegWr) is

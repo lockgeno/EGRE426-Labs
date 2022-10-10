@@ -39,7 +39,7 @@ entity ALU is
            
 end ALU;
 architecture behavioral of ALU is
-signal Adder_R, Subtractor_R, AND_R, OR_R, LLS_R, LRS_R, ALS_R, ARS_R : std_logic_vector(31 downto 0):= x"0000_0000"; 
+signal Adder_R, Subtractor_R, AND_R, OR_R, LLS_R, LRS_R, ALS_R, ARS_R : std_logic_vector(31 downto 0); 
 signal Adder_CO, Subtractor_CO, AND_CO, OR_CO, LLS_CO, LRS_CO, ALS_CO, ARS_CO : std_logic;
 signal Adder_OF, Subtractor_OF, AND_OF, OR_OF, LLS_OF, LRS_OF, ALS_OF, ARS_OF : std_logic;
 component Adder 
@@ -99,8 +99,8 @@ function zero_test( C: std_logic_vector (31 downto 0))
     return zeroval;
     end zero_test;
 begin
---F32adder : adder port map( Overflow => Adder_OF, Carryout => Adder_CO, Result => Adder_R, BusA => BusA, BusB => BusB);
---F32subtractor : Subtractor  port map( Overflow => Subtractor_OF, Carryout => Subtractor_CO, Result => Subtractor_R, BusA => BusA, BusB => BusB);
+F32adder : adder port map( Overflow => Adder_OF, Carryout => Adder_CO, Result => Adder_R, BusA => BusA, BusB => BusB);
+F32subtractor : Subtractor  port map( Overflow => Subtractor_OF, Carryout => Subtractor_CO, Result => Subtractor_R, BusA => BusA, BusB => BusB);
 F32ANDgate : Bitwise_AND port map( Overflow => AND_OF, Carryout => AND_CO, Result => AND_R, BusA => BusA, BusB => BusB);
 F32ORgate : Bitwise_OR  port map( Overflow => OR_OF, Carryout => OR_CO, Result => OR_R, BusA => BusA, BusB => BusB);
 F32LLS : Logical_Left_Shift port map( Overflow => LLS_OF, Carryout => LLS_OF, Result => LLS_R, BusA => BusA, BusB => BusB);
@@ -108,53 +108,54 @@ F32LRS : Logical_Right_Shift  port map( Overflow => LRS_OF, Carryout => LRS_CO, 
 F32ALS : Arithmetic_Left_Shift  port map( Overflow => ALS_OF, Carryout => ALS_CO, Result => ALS_R, BusA => BusA, BusB => BusB);
 F32ARS : Arithmetic_Right_Shift   port map( Overflow => ARS_OF , Carryout => ARS_CO, Result => ARS_R, BusA => BusA, BusB => BusB);
 
-multiplexer: process(BusA, BusB) 
+multiplexer: process(Adder_R,Subtractor_R, AND_R, OR_R, LLS_R, LRS_R, ALS_R, ARS_R, Adder_CO, Subtractor_CO, AND_CO, OR_CO, LLS_CO, LRS_CO, ALS_CO, ARS_CO, Adder_OF, Subtractor_OF, AND_OF, OR_OF, LLS_OF, LRS_OF, ALS_OF, ARS_OF) 
+variable temp_R : std_logic_vector(31 downto 0);
 begin
 case ALUctr is
 
     when "000" =>
-        
-        Result <= BusA + BusB; 
+        temp_R := Adder_R; 
         Zero <= zero_test(Adder_R);
         Overflow <= Adder_OF;
         Carryout <= Adder_CO;
     when "001" => 
-        Result <= BusA -BusB;
-        Zero <= zero_test(Adder_R);
+        temp_R :=  Subtractor_R;
+        Zero <= zero_test(Subtractor_R);
         Overflow <= Subtractor_OF;
         Carryout <= Subtractor_CO;
      when "010" =>
-        Result <= AND_R; 
+        temp_R :=  AND_R; 
         Zero <= zero_test(AND_R);
         Overflow <= AND_OF;
         Carryout <= AND_CO;
      when "011" => 
-        Result <= OR_R;
+        temp_R :=  OR_R;
         Zero <= zero_test(OR_R);
         Overflow <= OR_OF;
         Carryout <= OR_CO;
      when "100" =>
-        Result <= LLS_R; 
+        temp_R :=  LLS_R; 
         Zero <= zero_test(LLS_R);
         Overflow <= LLS_OF;
         Carryout <= LLS_CO; 
      when "101" => 
-        Result <= LRS_R;
+        temp_R :=  LRS_R;
         Zero <= zero_test(LRS_R);
         Overflow <= LRS_OF;
         Carryout <= LRS_CO;
      when "110" =>
-        Result <= ALS_R; 
+       temp_R := ALS_R; 
         Zero <= zero_test(ALS_R);
         Overflow <= ALS_OF;
         Carryout <= ALS_CO;
      when "111" => 
-        Result <= ARS_R;
+        temp_R := ARS_R;
         Zero <= zero_test(ARS_R);
         Overflow <= ARS_OF;
         Carryout <= ARS_CO;
     when others =>
 end case;
+Result <= temp_R;
 end process multiplexer;
 
 

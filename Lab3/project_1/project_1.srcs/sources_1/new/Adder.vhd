@@ -32,29 +32,32 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Adder is
-    Port ( Carryout : out std_logic;
-           Carryin : in std_logic;
-           Resultbit : out std_logic;
-           A, B : in std_logic);
+    Port ( Overflow, Carryout : out std_logic;
+           Result : out std_logic_vector(31 downto 0);
+           BusA, BusB : in std_logic_vector (31 downto 0));
            
 end Adder;
-architecture behavioral of Adder is
-signal Cin : std_logic_vector(31 downto 0) := x"0000_0000";
-signal Co : std_logic;
-signal Result_sig : std_logic_vector(31 downto 0) := x"0000_0000";
+architecture Behavioral of Adder is
+
 begin
 adding : process(BusA, BusB)
+variable Cin : std_logic := '0';
+variable Cin_vector : std_logic_vector(31 downto 1);
+variable sum : std_logic_vector(31 downto 0);
+variable Co : std_logic;
 begin
-for i in 0 to 30 loop
-Result_sig(i) <= BusA(i) xor BusB(i) xor Cin(i);
-Cin(i+1) <= (BusA(i) and BusB(i)) or (BusA(i) and Cin(i)) or (BusB(i) and Cin(i));
+    sum(0) := BusA(0) xor BusB(0) xor Cin;
+    Cin_vector(1) := (BusA(0) and BusB(0)) or (BusA(0) and Cin) or (BusB(0) and Cin);
+for i in 1 to 30 loop
+    sum(i) := BusA(i) xor BusB(i) xor Cin_vector(i);
+    Cin_vector(i+1) := (BusA(i) and BusB(i)) or (BusA(i) and Cin_vector(i)) or (BusB(i) and Cin_vector(i));
 end loop;
-Result_sig(31) <= BusA(31) xor BusB(31) xor Cin(31);
-Co <= (BusA(31) and BusB(31)) or (BusA(31) and Cin(31)) or (BusB(31) and Cin(31)); 
-Carryout <= Co;
-Overflow <= Cin(31) xor Co;
-Result <= Result_sig;
+    sum(31) := BusA(31) xor BusB(31) xor Cin_vector(31);
+    Co := (BusA(31) and BusB(31)) or (BusA(31) and Cin_vector(31)) or (BusB(31) and Cin_vector(31));
+    Result <= sum;
+    Carryout <= Co;
+    Overflow <= Co xor Cin_vector(31);
 end process adding;
 
-end behavioral;
+end Behavioral;
       

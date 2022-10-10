@@ -58,7 +58,7 @@ begin
 
   clock : process
   begin
-    for i in 0 to 2 * (NUM_VALS) loop
+    for i in 0 to 3 * (NUM_VALS) loop
       clk_sig <= NOT clk_sig;
       wait for TIME_DELAY/2;
     end loop;

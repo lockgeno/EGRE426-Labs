@@ -50,7 +50,7 @@ signal BusBT : std_logic_vector(31 downto 0) ;
 signal Cout, Overflow :std_logic;
 signal Result : std_logic_vector(31 downto 0);
 begin
-DUT : entity work.Adder(behavioral)
+DUT : entity work.Logical_Right_Shift(Behavioral)
 port map( Overflow => Overflow,
           Carryout => Cout,
           Result => Result,

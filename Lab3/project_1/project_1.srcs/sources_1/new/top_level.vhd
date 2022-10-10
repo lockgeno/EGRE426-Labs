@@ -66,17 +66,17 @@ end component;
 --signals and variables
 signal  bus_A, bus_B : std_logic_vector(31 downto 0); 
 signal Ra_i, Rb_i, Rw_i : std_logic_vector(4 downto 0);
-signal Result_i : std_logic_vector(31 downto 0);
+signal Result_i1, Result_i2 : std_logic_vector(31 downto 0);
 signal ALUctr_i : std_logic_vector(2 downto 0);
+
 begin
 Ra_i <= std_logic_vector(Rs);
 Rb_i <= std_logic_vector(Rt);
 Rw_i <= std_logic_vector(Rd);
 ALUctr_i <= std_logic_vector(ALUctr);
 
-Reg_file : Register_file port map (Ra => Ra_i, Rb => Rb_i, Rw => Rw_i, RegWr => RegWr, Writebus => Result_i, Clk => clk, busA => bus_A, busB => bus_B);
+Reg_file : Register_file port map (Ra => Ra_i, Rb => Rb_i, Rw => Rw_i, RegWr => RegWr, Writebus => Result_i1, Clk => clk, busA => bus_A, busB => bus_B);
 
-ALU_F : ALU port map( ALUctr => ALUctr_i, Zero => Zero, Overflow => Overflow, Carryout => Carryout,  Result => Result_i, BusA => bus_A, busB => bus_B); 
-Result <= unsigned(Result_i);
-
+ALU_F : ALU port map( ALUctr => ALUctr_i, Zero => Zero, Overflow => Overflow, Carryout => Carryout,  Result => Result_i2, BusA => bus_A, busB => bus_B); 
+Result <= unsigned(Result_i2);
 end simple;

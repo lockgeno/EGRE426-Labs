@@ -39,27 +39,25 @@ entity Subtractor    is
 end Subtractor;
 architecture behavioral of Subtractor is
 
-signal negBusB,Busb2 : std_logic_vector(31 downto 0) := x"0000_0000";
-signal Cin1, Cin2 : std_logic_vector(32 downto 0) := "000000000000000000000000000000000";
-signal one : std_logic_vector(31 downto 0) := x"0000_0001";
-begin
-twos_comp: process (BusB, negBusB)
-begin
-negBusB <= not(BusB);
-for i in 0 to 31 loop
-Busb2(i) <= one(i) xor negBusB(i) xor Cin1(i);
-Cin1(i+1) <= (one(i) and negBusB(i)) or (one(i) and Cin1(i)) or (negBusB(i) and Cin1(i));
-end loop;
-end process twos_comp;
-subtracting : process(BusA, Busb2)
 begin
 
-for i in 0 to 31 loop 
-Result(i) <= BusA(i) xor Busb2(i) xor Cin2(i);
-Cin2(i+1) <= (BusA(i) and Busb2(i)) or (BusA(i) and Cin2(i)) or (Busb2(i) and Cin2(i));
+subtracting : process(BusA, BusB)
+variable Bin : std_logic := '0';
+variable Bin_vector : std_logic_vector(31 downto 1);
+variable diff : std_logic_vector(31 downto 0);
+variable Co : std_logic;
+begin
+    diff(0) := BusA(0) xor BusB(0) xor Bin;
+    Bin_vector(1) := (not(BusA(0)) and BusB(0)) or (not(BusA(0)xor BusB(0)) and Bin);
+for i in 1 to 30 loop
+    diff(i) := BusA(i) xor BusB(i) xor Bin_vector(i);
+    Bin_vector(i+1) := (not(BusA(i)) and BusB(i)) or (not(BusA(i)xor BusB(i)) and Bin_vector(i));
 end loop;
-Carryout <= Cin2(31);
-Overflow <= Cin2(31) xor Cin2(30);
+    diff(31) := BusA(31) xor BusB(31) xor Bin_vector(31);
+    Co := (not(BusA(31)) and BusB(31)) or (not(BusA(31)xor BusB(31)) and Bin_vector(31));
+    Result <= diff;
+    Carryout <= Co;
+    Overflow <= Co xor Bin_vector(31);
 end process subtracting;
 
 end behavioral;

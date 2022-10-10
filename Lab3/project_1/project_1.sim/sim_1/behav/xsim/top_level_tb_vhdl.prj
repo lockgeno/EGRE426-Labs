@@ -1,6 +1,7 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
 "../../../../project_1.srcs/sources_1/new/ALU.vhd" \
+"../../../../project_1.srcs/sources_1/new/Adder.vhd" \
 "../../../../project_1.srcs/sources_1/new/Arithmetic_Left_Shift.vhd" \
 "../../../../project_1.srcs/sources_1/new/Arithmetic_Right_Shift.vhd" \
 "../../../../project_1.srcs/sources_1/new/Bitwise_AND.vhd" \
@@ -8,6 +9,7 @@ vhdl xil_defaultlib  \
 "../../../../project_1.srcs/sources_1/new/Logical_Left_Shift.vhd" \
 "../../../../project_1.srcs/sources_1/new/Logical_Right_Shift.vhd" \
 "../../../../project_1.srcs/sources_1/new/Register_file.vhd" \
+"../../../../project_1.srcs/sources_1/new/Subtractor.vhd" \
 "../../../../project_1.srcs/sources_1/new/top_level.vhd" \
 "../../../../../top_level_tb.vhdl" \
 

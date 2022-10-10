@@ -18,15 +18,11 @@ entity Logical_Right_Shift is
 end Logical_Right_Shift;
 architecture behavioral of Logical_Right_Shift is
 begin
-shift_right_31 : process is
+shift_right_31 : process(BusA, BusB) is
 begin
 
-for i in 0 to 30 loop
-Result(i) <= BusA(i + 1);
-end loop;
-Result(31) <= '0';
+Result(31 downto 0) <= '0' & busA(31 downto 1) ;
 Overflow <= '0';
 Carryout <= '0';
-wait;
 end process;
 end behavioral;
