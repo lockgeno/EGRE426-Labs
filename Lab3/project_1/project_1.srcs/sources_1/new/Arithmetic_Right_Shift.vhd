@@ -18,16 +18,12 @@ entity Arithmetic_Right_Shift    is
 end Arithmetic_Right_Shift  ;
 architecture behavioral of Arithmetic_Right_Shift is
 begin
-shift_right_31 : process is
+shift_right_31 : process(BusA, BusB) is
 begin
 
-for i in 0 to 30 loop
-Result(i) <= BusA(i + 1);
-end loop;
-Result(31) <= BusA(31);
+Result(31 downto 0) <= busA(31) & busA(31 downto 1) ;
 Overflow <= '0';
 Carryout <= '0';
-wait;
 end process;
 
 end behavioral;

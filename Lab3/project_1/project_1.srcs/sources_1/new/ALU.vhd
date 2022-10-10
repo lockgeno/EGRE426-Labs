@@ -144,8 +144,8 @@ case ALUctr is
         Overflow <= LRS_OF;
         Carryout <= LRS_CO;
      when "110" =>
-       temp_R := ALS_R; 
-        Zero <= zero_test(ALS_R);
+       temp_R := LLS_R; 
+        Zero <= zero_test(LLS_R);
         Overflow <= ALS_OF;
         Carryout <= ALS_CO;
      when "111" => 

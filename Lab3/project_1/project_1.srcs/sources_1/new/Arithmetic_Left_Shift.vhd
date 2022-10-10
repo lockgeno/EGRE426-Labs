@@ -18,15 +18,13 @@ entity Arithmetic_Left_Shift    is
 end Arithmetic_Left_Shift  ;
 architecture behavioral of Arithmetic_Left_Shift is
 begin
-shift_left_31 : process is
+shift_left_31 : process (BusA, BusB) is
+variable Result_temp : std_logic_vector(31 downto 0); 
 begin
 
-for i in 31 downto 1 loop
-Result(i) <= BusA(i - 1);
-end loop;
-Result(0) <= '0';
+
+Result(31 downto 0) <= busA(30 downto 0) & '0' ;
 Overflow <= '0';
 Carryout <= '0';
-wait;
 end process; 
 end behavioral;

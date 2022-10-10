@@ -4,4 +4,25 @@ Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto b3492fc8c5
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.Register_file [register_file_default]
+Compiling architecture behavioral of entity xil_defaultlib.Adder [adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.Subtractor [subtractor_default]
+Compiling architecture behavioral of entity xil_defaultlib.Bitwise_AND [bitwise_and_default]
+Compiling architecture behavioral of entity xil_defaultlib.Bitwise_OR [bitwise_or_default]
+Compiling architecture behavioral of entity xil_defaultlib.Logical_Left_Shift [logical_left_shift_default]
+Compiling architecture behavioral of entity xil_defaultlib.Logical_Right_Shift [logical_right_shift_default]
+Compiling architecture behavioral of entity xil_defaultlib.Arithmetic_Left_Shift [arithmetic_left_shift_default]
+Compiling architecture behavioral of entity xil_defaultlib.Arithmetic_Right_Shift [arithmetic_right_shift_default]
+Compiling architecture behavioral of entity xil_defaultlib.ALU [alu_default]
+Compiling architecture simple of entity xil_defaultlib.top_level [top_level_default]
+Compiling architecture behavior of entity xil_defaultlib.top_level_tb
+Built simulation snapshot top_level_tb_behav

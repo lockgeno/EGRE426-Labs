@@ -79,4 +79,5 @@ Reg_file : Register_file port map (Ra => Ra_i, Rb => Rb_i, Rw => Rw_i, RegWr => 
 
 ALU_F : ALU port map( ALUctr => ALUctr_i, Zero => Zero, Overflow => Overflow, Carryout => Carryout,  Result => Result_i2, BusA => bus_A, busB => bus_B); 
 Result <= unsigned(Result_i2);
+Result_i1 <=  Result_i2;
 end simple;
