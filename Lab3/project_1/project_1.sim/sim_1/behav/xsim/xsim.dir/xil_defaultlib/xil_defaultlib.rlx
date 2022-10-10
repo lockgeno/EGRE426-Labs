@@ -2,8 +2,9 @@
 2020.2
 Nov 18 2020
 09:47:47
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sim_1/new/adder_tb.vhd,1665401375,vhdl,,,,adder_tb,,,,,,,,
 C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/ALU.vhd,1665364936,vhdl,,,,alu,,,,,,,,
-C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Adder.vhd,1665363828,vhdl,,,,adder,,,,,,,,
+C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Adder.vhd,1665402032,vhdl,C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sim_1/new/adder_tb.vhd,,,adder,,,,,,,,
 C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Arithmetic_Left_Shift.vhd,1665361447,vhdl,,,,arithmetic_left_shift,,,,,,,,
 C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Arithmetic_Right_Shift.vhd,1665361463,vhdl,,,,arithmetic_right_shift,,,,,,,,
 C:/Users/varda/OneDrive/Documents/EGRE426/Lab3/project_1/project_1.srcs/sources_1/new/Bitwise_AND.vhd,1665361404,vhdl,,,,bitwise_and,,,,,,,,

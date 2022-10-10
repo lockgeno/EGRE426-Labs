@@ -32,26 +32,29 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity Adder is
-    Port (  Overflow, Carryout : out std_logic;
-           Result : out std_logic_vector(31 downto 0);
-           BusA, BusB : in std_logic_vector (31 downto 0));
+    Port ( Carryout : out std_logic;
+           Carryin : in std_logic;
+           Resultbit : out std_logic;
+           A, B : in std_logic);
            
 end Adder;
 architecture behavioral of Adder is
 signal Cin : std_logic_vector(31 downto 0) := x"0000_0000";
 signal Co : std_logic;
+signal Result_sig : std_logic_vector(31 downto 0) := x"0000_0000";
 begin
-addding : process(BusA, BusB)
+adding : process(BusA, BusB)
 begin
-for i in 0 to 30 loop 
-Result(i) <= BusA(i) xor BusB(i) xor Cin(i);
+for i in 0 to 30 loop
+Result_sig(i) <= BusA(i) xor BusB(i) xor Cin(i);
 Cin(i+1) <= (BusA(i) and BusB(i)) or (BusA(i) and Cin(i)) or (BusB(i) and Cin(i));
 end loop;
-Result(31) <= BusA(31) xor BusB(31) xor Cin(31);
+Result_sig(31) <= BusA(31) xor BusB(31) xor Cin(31);
 Co <= (BusA(31) and BusB(31)) or (BusA(31) and Cin(31)) or (BusB(31) and Cin(31)); 
 Carryout <= Co;
 Overflow <= Cin(31) xor Co;
-end process;
+Result <= Result_sig;
+end process adding;
 
 end behavioral;
       
